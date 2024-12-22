@@ -1,22 +1,23 @@
 import { useState, useRef } from "react";
-import { useTonAddress } from "@tonconnect/ui-react";
+import { AptosConnectButton } from "@razorlabs/wallet-kit";
+import { useAptosWallet } from "@razorlabs/wallet-kit";
 
 function Home() {
-  const address = useTonAddress();
+  const wallet = useAptosWallet();
 
   const [modalVisible, setModalVisible] = useState(false);
 
   const bodyRef = useRef<HTMLDivElement | null>(null);
 
   const handleTap = () => {
-    if (!address) {
+    if (!wallet.connected) {
       setModalVisible(true);
       return;
     }
   };
 
   const handleTouch = () => {
-    if (!address) {
+    if (!wallet.connected) {
       setModalVisible(true);
       return;
     }
@@ -44,11 +45,15 @@ function Home() {
       {/* Display Number and Tap@Earn Context */}
       <div className="flex flex-col relative items-center justify-between">
         <h1 className="mb-4 max-sm:mb-1">MOONMOVERZ</h1>
+        <div ref={buttonWrapperRef} className="bg-white hidden">
+          <AptosConnectButton />
+        </div>
       </div>
       {/* Progress Bar and Limit */}
       <div>
         <p className="w-full text-2xl">
-          Ready To Snag Some <br /> <span className="font-extrabold text-[#f0dc2a]">$GMOON</span> Token?
+          Ready To Snag Some <br />{" "}
+          <span className="font-extrabold text-[#f0dc2a]">$GMOON</span> Token?
         </p>
         {/* <div className="relative w-[340px] mt-6">
           <Link to='/boost' className="text-white flex flex-row items-center absolute right-4 bottom-[-20px]">
@@ -78,8 +83,9 @@ function Home() {
           alt="tonbuttonicon"
           className="w-10 h-10"
         />
-        Connnect Wallet
+        Connect Wallet
       </div>
+
       {modalVisible && (
         <>
           <div className="fixed bottom-0 left-0 right-0 p-4 shadow-lg bg-[#1E3D4B] rounded-t-2xl flex flex-col justify-center gap-4 animate-slide-in-bottom transform transition-all max-h-[80vh] overflow-y-auto">
@@ -114,7 +120,7 @@ function Home() {
                 alt="tonbuttonicon"
                 className="w-10 h-10"
               />
-              Connnect Wallet
+              Connect Wallet
             </div>
           </div>
         </>

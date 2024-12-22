@@ -11,6 +11,8 @@ import Boost from "./user_ability/boost";
 import Referrals from "./page/Referrals";
 import { EnergyProvider } from "./hooks/EnergyContext";
 
+import '@razorlabs/wallet-kit/style.css';
+
 function App() {
   return (
     <EnergyProvider>
