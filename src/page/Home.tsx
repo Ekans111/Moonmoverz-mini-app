@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { AptosConnectButton } from "@razorlabs/wallet-kit";
 import { useAptosWallet } from "@razorlabs/wallet-kit";
+import StickyHeader from "../component/StickyHeader";
 
 function Home() {
   const wallet = useAptosWallet();
@@ -27,13 +27,14 @@ function Home() {
     setModalVisible(false);
   };
 
-  const buttonWrapperRef = useRef(null);
+  const [buttonWrapperRef, setButtonWrapperRef] = useState<React.RefObject<HTMLDivElement> | null>(null);
 
   const handleTonButtonClick = () => {
-    if (buttonWrapperRef.current) {
+    if (buttonWrapperRef && buttonWrapperRef.current ) {
       const tonConnectButton = (buttonWrapperRef.current as any).querySelector(
         "button"
       ); // Adjust selector if necessary
+      console.log(tonConnectButton)
       if (tonConnectButton) {
         tonConnectButton.click();
       }
@@ -43,10 +44,11 @@ function Home() {
   return (
     <div className="flex flex-col items-center h-[100vh] pt-[15%] pb-[100px] justify-between min-h-[590px]">
       {/* Display Number and Tap@Earn Context */}
+
       <div className="flex flex-col relative items-center justify-between">
         <h1 className="mb-4 max-sm:mb-1">MOONMOVERZ</h1>
-        <div ref={buttonWrapperRef} className="bg-white hidden">
-          <AptosConnectButton />
+        <div className="bg-white hidden">
+          <StickyHeader setButtonRef={setButtonWrapperRef} />
         </div>
       </div>
       {/* Progress Bar and Limit */}
