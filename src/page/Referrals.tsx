@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useTonAddress } from "@tonconnect/ui-react";
 
 const Referrals: React.FC = () => {
   const address = useTonAddress();
   const TgBotHandle = import.meta.env.VITE_TGBOT_HANDLE;
-  const [referralLink, setReferralLink] = useState<string>(
-    `https://t.me/${TgBotHandle}`
-  );
+  const [, setReferralLink] = useState<string>(`https://t.me/${TgBotHandle}`);
   const [modalVisible, setModalVisible] = useState(false);
-  const [copied, setCopied] = useState(false);
   const [referralDetails, setReferralDetails] = useState<any>([]);
   const [bonusRequirment, setBonusRequirement] = useState<any>({});
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
@@ -85,11 +81,6 @@ const Referrals: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const handleCopyLink = () => {
-    setCopied(true);
-    setModalVisible(true);
-  };
-
   return (
     <>
       <button
@@ -122,7 +113,12 @@ const Referrals: React.FC = () => {
                 <img src="/image/gift.png" alt="check" className="w-8 h-8" />
               </div>
               <div className="text-start">
-                <p className="text-2xl font-bold">{bonusRequirment.count && (bonusRequirment.count === 1 ? "Invite a friend" : `Invite ${bonusRequirment.count} friends` )}</p>
+                <p className="text-2xl font-bold">
+                  {bonusRequirment.count &&
+                    (bonusRequirment.count === 1
+                      ? "Invite a friend"
+                      : `Invite ${bonusRequirment.count} friends`)}
+                </p>
                 <div className="flex justify-center items-center px-2">
                   <img
                     src="/image/Coin_small.png"
@@ -221,18 +217,6 @@ const Referrals: React.FC = () => {
             </div>
           )}
         </div>
-        <CopyToClipboard text={referralLink} onCopy={handleCopyLink}>
-          <button
-            className={`bg-gradient-to-r from-[#07AEEA] to-[#D3984E] text-white rounded-xl h-16 py-7 flex items-center justify-center text-2xl mt-4 mb-4 mx-4`}
-          >
-            <img
-              src="/image/icon/copy.svg"
-              alt="copy"
-              className="w-6 h-6 mr-2"
-            />{" "}
-            {copied ? "Copied" : "Copy referral link"}
-          </button>
-        </CopyToClipboard>
       </div>
       {modalVisible && (
         <>

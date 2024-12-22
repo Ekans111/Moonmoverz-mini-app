@@ -52,7 +52,7 @@ body {
 h1 {
   color: #FFF;
   text-align: center;
-  text-shadow: -4px -4px 4px rgba(255, 0, 0, 0.50), 4px 4px 0px rgba(7, 174, 234, 0.50);
+  text-shadow: -4px -4px 4px rgb(255, 177, 33), 4px 4px 0px rgba(234, 41, 7, 0.5);
   font-family: Outfit;
   font-size: 48px;
   font-style: normal;
