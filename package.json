@@ -27,6 +27,7 @@
     "react-router-dom": "^6.23.1",
     "react-svg-loader": "^3.0.3",
     "react-toastify": "^10.0.5",
+    "sonner": "^1.7.1",
     "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
