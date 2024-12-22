@@ -82,11 +82,6 @@ function Home() {
       </div>
       {modalVisible && (
         <>
-          <div
-            className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-70 flex items-center justify-center"
-            onClick={() => setModalVisible(false)}
-          ></div>
-
           <div className="fixed bottom-0 left-0 right-0 p-4 shadow-lg bg-[#1E3D4B] rounded-t-2xl flex flex-col justify-center gap-4 animate-slide-in-bottom transform transition-all max-h-[80vh] overflow-y-auto">
             <div className="flex justify-end w-full h-12">
               <button
