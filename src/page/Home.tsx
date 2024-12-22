@@ -59,7 +59,7 @@ function Home() {
       </div>
       {/* Tap Go! Icon */}
       <div
-        className="relative animate-zoomInOut max-sm:my-0 rounded-full bg-cover aspect-square h-[45vh] flex-shrink-0 items-center justify-center"
+        className="relative animate-zoomInOut mb-5 rounded-full bg-cover aspect-square h-[45vh] flex-shrink-0 items-center justify-center"
         ref={bodyRef}
         style={{ backgroundImage: "url('/image/move.jpg')" }}
         onTouchStart={handleTouch}
