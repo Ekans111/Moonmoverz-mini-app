@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useTonAddress } from "@tonconnect/ui-react";
 
 const Leaderboard = () => {
   interface UsersLists {
@@ -16,7 +15,6 @@ const Leaderboard = () => {
     rank: number;
   }
 
-  const address = useTonAddress(); // Get the TON address using the useTonAddress 
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [filterRange, setFilterRange] = useState('today');
@@ -35,17 +33,16 @@ const Leaderboard = () => {
 
   useEffect(() => {
     setPage("1");
-    fetchUsersList(address, filterRange, "1", true);
-  }, [address, filterRange])
+    fetchUsersList(filterRange, "1", true);
+  }, [filterRange])
 
   useEffect(() => {
     if (parseInt(page) > 1) {
-      fetchUsersList(address, filterRange, page, false);
+      fetchUsersList(filterRange, page, false);
     }
   }, [page]);
 
-  async function fetchUsersList(walletAddress: string, filterRange: string, page: string, reset: boolean) {
-    if (!address) return;
+  async function fetchUsersList(filterRange: string, page: string, reset: boolean) {
     if (usersData.totalPages && parseInt(page) > usersData.totalPages) return;
     if (isFetching.current) return;
 
@@ -58,7 +55,7 @@ const Leaderboard = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          wallet_address: walletAddress,
+          wallet_address: "walletAddress",
           filter: filterRange,
           page: page,
           limit: "10"
@@ -143,7 +140,7 @@ const Leaderboard = () => {
             {
               usersData.leaderboard && usersData.leaderboard.map((userInfos, index) => (
                 <span key={index}>
-                  <div className={`${userInfos.userId === address
+                  <div className={`${userInfos.userId === "address"
                     ? `h-[70px] px-3 grid grid-cols-12 gap-4 items-center justify-center sticky bottom-0 top-0 z-50 bg-custom-gradient rounded-[8px]`
                     : 'h-[70px] px-3 grid grid-cols-12 gap-4 items-center justify-center'}`}>
                     <div className="relative flex items-center col-span-3">
@@ -159,7 +156,7 @@ const Leaderboard = () => {
                       </div>
                     </div>
                     {
-                      userInfos.userId === address &&
+                      userInfos.userId === "address" &&
                       <div className="text-[#11262F] text-xl font-bold justify-self-center ml-6">
                         YOU
                       </div>

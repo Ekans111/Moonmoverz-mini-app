@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import ImageCheckQuest from '../assets/check_button.png';
 import { Quest, QuestType } from "../mock";
-import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 import WebApp from '@twa-dev/sdk';
 import "react-toastify/dist/ReactToastify.css";
 
@@ -21,7 +20,6 @@ export default function QuestList() {
     email: ''
   });
 
-  const address = useTonAddress(); // Get the TON address using the useTonAddress 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 
@@ -57,37 +55,8 @@ export default function QuestList() {
   useEffect(() => {
     if (new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/).test(emailAddress)) setIsValidEmail(true)
     else setIsValidEmail(false)
+    setQuests([])
   }, [emailAddress]);
-
-
-  useEffect(() => {
-    fetchUserData(address);
-
-  }, [address, modalData])
-
-  async function fetchUserData(walletAddress: string) {
-    if (!address) return;
-    try {
-      const response = await fetch(`${backendUrl}/api/v1/users/userRewards`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          wallet_address: walletAddress,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error status: ${response.status}`);
-      }
-
-      const res = await response.json();
-      setQuests(res);
-    } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
-    }
-  }
 
   const closeModal = () => {
     setModalVisible(false);
@@ -102,13 +71,11 @@ export default function QuestList() {
   };
 
   const handleButtonClick = (data: any) => {
-    if (!address) {
-      setWalletModalVisible(true);
-    } else {
+
       setModalVisible(true);
       setModalData(data);
       setxAddress(data.account);
-    }
+
   };
 
   const buttonWrapperRef = useRef(null);
@@ -130,7 +97,7 @@ export default function QuestList() {
     setIsFollowingX(true);
   }
   const handleVerifyTwitterClick = async () => {
-    if (!address) return;
+
     try {
       const response = await fetch(`${backendUrl}/api/v1/users/verifyTwitterFollow`, {
         method: 'POST',
@@ -138,7 +105,7 @@ export default function QuestList() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          wallet_address: address,
+          wallet_address: "address",
           twitter_handle: xAddress
         }),
       });
@@ -157,7 +124,6 @@ export default function QuestList() {
   }
   //Handle EthWallet API
   const handleSubmitWalletAddress = async () => {
-    if (!address) return;
     try {
       const response = await fetch(`${backendUrl}/api/v1/users/shareETHWallet`, {
         method: 'POST',
@@ -165,7 +131,7 @@ export default function QuestList() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          wallet_address: address,
+          wallet_address: "address1",
           eth_wallet_address: walletAddress
         }),
       });
@@ -184,8 +150,6 @@ export default function QuestList() {
   }
   //Handle Email API
   const handleSubmitEmailAddress = async () => {
-    if (!address) return;
-    console.log(emailAddress)
     try {
       const response = await fetch(`${backendUrl}/api/v1/users/shareEmailAddress`, {
         method: 'POST',
@@ -193,7 +157,7 @@ export default function QuestList() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          wallet_address: address,
+          wallet_address: "address",
           emailAddress: emailAddress
         }),
       });
@@ -216,7 +180,6 @@ export default function QuestList() {
     setIsFollowingTelegram(true);
   }
   const handleVerifyTelegramClick = async () => {
-    if (!address) return;
     try {
       const response = await fetch(`${backendUrl}/api/v1/users/verifyTelegramJoin`, {
         method: 'POST',
@@ -224,7 +187,7 @@ export default function QuestList() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          wallet_address: address,
+          wallet_address: "address",
           telegram_username: userId
         }),
       });
@@ -247,7 +210,6 @@ export default function QuestList() {
     setIsVisitingWebsite(true)
   }
   const handleVerifyWebsite = async () => {
-    if (!address) return;
     try {
       const response = await fetch(`${backendUrl}/api/v1/users/verifyWebsiteVisit`, {
         method: 'POST',
@@ -255,7 +217,7 @@ export default function QuestList() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          wallet_address: address,
+          wallet_address: "address",
         }),
       });
       if (!response.ok) {
@@ -273,9 +235,6 @@ export default function QuestList() {
 
   return (
     <div className="max-h-[80vh] max-sm:max-h-[70vh] overflow-x-hidden">
-      <div ref={buttonWrapperRef} className="hidden" >
-        <TonConnectButton />
-      </div>
       {quests.map((data, index) => (
         <button
           key={index}
