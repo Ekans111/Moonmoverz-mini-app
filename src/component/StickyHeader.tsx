@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import nacl from "tweetnacl";
 import { AccountInfo, UserResponseStatus } from "@aptos-labs/wallet-standard";
-import { Hex } from "@aptos-labs/ts-sdk";
 import { toast } from "sonner";
 
 import { getAdapter } from "../misc/adapter";
