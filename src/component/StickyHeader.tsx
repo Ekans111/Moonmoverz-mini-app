@@ -110,21 +110,10 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({ setButtonRef }) => {
                         ],
                       },
                     });
+
+                    // @ts-ignore
                     const signedTx = await adapter.signAndSubmitTransaction({
                       rawTransaction: transaction.rawTransaction,
-                      secondarySignerAddresses: undefined,
-                      serialize: function (): void {
-                        throw new Error("Function not implemented.");
-                      },
-                      bcsToBytes: function (): Uint8Array {
-                        throw new Error("Function not implemented.");
-                      },
-                      bcsToHex: function (): Hex {
-                        throw new Error("Function not implemented.");
-                      },
-                      toStringWithoutPrefix: function (): string {
-                        throw new Error("Function not implemented.");
-                      },
                     });
                     if (signedTx.status !== UserResponseStatus.APPROVED) {
                       throw new Error("Transaction rejected");
@@ -156,21 +145,9 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({ setButtonRef }) => {
                         ],
                       },
                     });
+                    // @ts-ignore
                     const signedTx = await adapter.signTransaction({
                       rawTransaction: transaction.rawTransaction,
-                      secondarySignerAddresses: undefined,
-                      serialize: function (): void {
-                        throw new Error("Function not implemented.");
-                      },
-                      bcsToBytes: function (): Uint8Array {
-                        throw new Error("Function not implemented.");
-                      },
-                      bcsToHex: function (): Hex {
-                        throw new Error("Function not implemented.");
-                      },
-                      toStringWithoutPrefix: function (): string {
-                        throw new Error("Function not implemented.");
-                      },
                     });
                     if (signedTx.status !== UserResponseStatus.APPROVED) {
                       throw new Error("Transaction rejected");
