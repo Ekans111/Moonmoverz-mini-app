@@ -1,26 +1,18 @@
 import { useState, useRef } from "react";
-import { useAptosWallet } from "@razorlabs/wallet-kit";
 import StickyHeader from "../component/StickyHeader";
 
 function Home() {
-  const wallet = useAptosWallet();
 
   const [modalVisible, setModalVisible] = useState(false);
 
   const bodyRef = useRef<HTMLDivElement | null>(null);
 
   const handleTap = () => {
-    if (!wallet.connected) {
       setModalVisible(true);
-      return;
-    }
   };
 
   const handleTouch = () => {
-    if (!wallet.connected) {
       setModalVisible(true);
-      return;
-    }
   };
 
   const closeWalletModal = () => {
@@ -34,7 +26,6 @@ function Home() {
       const tonConnectButton = (buttonWrapperRef.current as any).querySelector(
         "button"
       ); // Adjust selector if necessary
-      console.log(tonConnectButton)
       if (tonConnectButton) {
         tonConnectButton.click();
       }
