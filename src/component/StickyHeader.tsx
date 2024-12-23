@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react";
+import nacl from "tweetnacl";
+import { AccountInfo, UserResponseStatus } from "@aptos-labs/wallet-standard";
+import { Hex } from "@aptos-labs/ts-sdk";
 import { toast } from "sonner";
+
 import { getAdapter } from "../misc/adapter";
+import { getAptos } from "../misc/aptos";
 import ActionStarryButton from "./ActionStarryButton";
 import StarryButton from "./StarryButton";
-import { AccountInfo, UserResponseStatus } from "@aptos-labs/wallet-standard";
-import { getAptos } from "../misc/aptos";
-import nacl from "tweetnacl";
-import { Hex } from "@aptos-labs/ts-sdk";
 
 interface StickyHeaderProps {
   setButtonRef: (ref: React.RefObject<HTMLDivElement>) => void;

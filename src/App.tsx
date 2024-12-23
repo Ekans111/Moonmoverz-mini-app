@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./page/Home";
 import Quest from "./page/Quest";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "sonner";
 // import Footer from "./component/Footer";
 import Layout from "./Layout";
 import Streak from "./page/Streak";
@@ -10,8 +10,6 @@ import Leaderboard from "./component/Leaderboard";
 import Boost from "./user_ability/boost";
 import Referrals from "./page/Referrals";
 import { EnergyProvider } from "./hooks/EnergyContext";
-
-import '@razorlabs/wallet-kit/style.css';
 
 function App() {
   return (
@@ -28,7 +26,7 @@ function App() {
               <Route path="refs" element={<Referrals />} />
             </Route>
           </Routes>
-          <ToastContainer />
+          <Toaster position='bottom-left' richColors />
           {/* <Footer /> */}
         </div>
       </Router>

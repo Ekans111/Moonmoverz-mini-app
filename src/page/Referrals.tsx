@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTonAddress } from "@tonconnect/ui-react";
 
 const Referrals: React.FC = () => {
-  const address = useTonAddress();
   const TgBotHandle = import.meta.env.VITE_TGBOT_HANDLE;
   const [, setReferralLink] = useState<string>(`https://t.me/${TgBotHandle}`);
   const [modalVisible, setModalVisible] = useState(false);
@@ -29,7 +27,7 @@ const Referrals: React.FC = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            walletAddress: address,
+            walletAddress: "address",
           }),
         }
       );
@@ -58,7 +56,7 @@ const Referrals: React.FC = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            walletAddress: address,
+            walletAddress: "address",
           }),
         }
       );
