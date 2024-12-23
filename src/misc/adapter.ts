@@ -1,8 +1,9 @@
 import { NightlyConnectAptosAdapter } from '@nightlylabs/wallet-selector-aptos'
 
 let _adapter: NightlyConnectAptosAdapter | undefined
-export const getAdapter = async () => {
-  console.log("Adapter is ", _adapter)
+// @ts-ignore
+export const getAdapter = async (persisted = true) => {
+  console.log("getAdapter_1===>", _adapter)
   if (_adapter) return _adapter
   _adapter = await NightlyConnectAptosAdapter.build({
     appMetadata: {
@@ -11,6 +12,6 @@ export const getAdapter = async () => {
       icon: 'https://docs.nightly.app/img/logo.png',
     },
   })
-  console.log("Aptos Template", _adapter)
+  console.log("getAdapter_2===>", _adapter)
   return _adapter
 }
