@@ -14,6 +14,7 @@ interface StickyHeaderProps {
 
 const StickyHeader: React.FC<StickyHeaderProps> = ({ setButtonRef }) => {
   const [userAccount, setUserAccount] = React.useState<
+  
     AccountInfo | undefined
   >();
   useEffect(() => {
@@ -114,6 +115,7 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({ setButtonRef }) => {
                     const signedTx = await adapter.signAndSubmitTransaction({
                       rawTransaction: transaction.rawTransaction,
                     });
+
                     if (signedTx.status !== UserResponseStatus.APPROVED) {
                       throw new Error("Transaction rejected");
                     }
@@ -144,6 +146,7 @@ const StickyHeader: React.FC<StickyHeaderProps> = ({ setButtonRef }) => {
                         ],
                       },
                     });
+
                     // @ts-ignore
                     const signedTx = await adapter.signTransaction({
                       rawTransaction: transaction.rawTransaction,
