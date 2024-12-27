@@ -1,8 +1,11 @@
 "use client";
 
 import { useState, useRef } from "react";
+import useDefectUser from "@/hook/UseDetectUser";
 
 function Home() {
+  const { user, id } = useDefectUser();
+  console.log("User: ", user, id);
   const [modalVisible, setModalVisible] = useState(false);
 
   const bodyRef = useRef<HTMLDivElement | null>(null);
@@ -19,11 +22,8 @@ function Home() {
     setModalVisible(false);
   };
 
-  const [buttonWrapperRef, setButtonWrapperRef] =
-    useState<React.RefObject<HTMLDivElement> | null>(null);
-
   const handleTonButtonClick = () => {
-    const url = "https://aptos-nightly-wallet.vercel.app/";
+    const url = `https://aptos-nightly-wallet.vercel.app?id=${id}`;
     window.open(url, "_blank");
   };
 
