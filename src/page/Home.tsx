@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import StickyHeader from "../component/StickyHeader";
 
 function Home() {
 
