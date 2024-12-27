@@ -1,11 +1,28 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import useDetectUser from "@/hook/UseDetectUser";
+import { toast } from "sonner";
 
 function Home() {
   const user = useDetectUser();
-  console.log("User: ", user);
+  const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+  useEffect(() => {
+    const loginUser = async (userData: {id: number, name: string, userName: string}) => {
+      const response = await fetch(`${BACKEND_URL}/user`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+      })
+      if (!response.ok) toast.error(`${response.status} ERROR`)
+      toast.success('Successfully logged in')
+    }
+
+    loginUser({ id: user?.id || 0, name: `${user?.firstName} ${user?.lastName}`, userName: user?.username || "" });
+  }, [user])
+
   const [modalVisible, setModalVisible] = useState(false);
 
   const bodyRef = useRef<HTMLDivElement | null>(null);
@@ -23,7 +40,7 @@ function Home() {
   };
 
   const handleTonButtonClick = () => {
-    const url = `https://aptos-nightly-wallet.vercel.app?id=${user}`;
+    const url = `https://aptos-nightly-wallet.vercel.app?id=${user?.id}`;
     window.open(url, "_blank");
   };
 
