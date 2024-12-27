@@ -1,12 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import StickyHeader from "@/component/StickyHeader";
-import useDetectDevice from "@/hooks/UseDetectDevice";
 
 function Home() {
-  const isMobile = useDetectDevice();
-  console.log("isMobile", isMobile);
   const [modalVisible, setModalVisible] = useState(false);
 
   const bodyRef = useRef<HTMLDivElement | null>(null);
@@ -27,19 +23,8 @@ function Home() {
     useState<React.RefObject<HTMLDivElement> | null>(null);
 
   const handleTonButtonClick = () => {
-    if (isMobile) {
-      const url = "https://aptos-nightly-wallet.vercel.app/"
-      window.open(url, "_blank");
-    } else {
-      if (buttonWrapperRef && buttonWrapperRef.current) {
-        const tonConnectButton = (
-          buttonWrapperRef.current as any
-        ).querySelector("button"); // Adjust selector if necessary
-        if (tonConnectButton) {
-          tonConnectButton.click();
-        }
-      }
-    }
+    const url = "https://aptos-nightly-wallet.vercel.app/";
+    window.open(url, "_blank");
   };
 
   return (
@@ -48,9 +33,6 @@ function Home() {
 
       <div className="flex flex-col relative items-center justify-between">
         <h1 className="mb-4 max-sm:mb-1">MOONMOVERZ</h1>
-        <div className="bg-white hidden">
-          <StickyHeader setButtonRef={setButtonWrapperRef} />
-        </div>
       </div>
       {/* Progress Bar and Limit */}
       <div>
