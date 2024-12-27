@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { TimerProvider } from "@/hooks/TimerContext";
+import { TimerProvider } from "@/provider/TimerContext";
 import { Toaster } from "sonner";
 
 import "./globals.css";

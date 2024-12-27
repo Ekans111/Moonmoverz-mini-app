@@ -3,7 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useTimer, formatTime } from "@/hooks/TimerContext";
+import { useTimer, formatTime } from "@/provider/TimerContext";
 
 export default function Leaderboard() {
   const { time, resetTimer } = useTimer();
