@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { TimerProvider } from "@/provider/TimerContext";
 import { Toaster } from "sonner";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -17,6 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Script
+          src="https://telegram.org/js/telegram-web-app.js"
+        />
         <TimerProvider>
           {children}
           <Toaster position="bottom-left" richColors />

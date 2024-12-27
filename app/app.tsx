@@ -5,7 +5,7 @@ import useDetectUser from "@/hook/UseDetectUser";
 
 function Home() {
   const { user, id } = useDetectUser();
-  console.log("User: ", user, id);
+  console.log("User: ", user);
   const [modalVisible, setModalVisible] = useState(false);
 
   const bodyRef = useRef<HTMLDivElement | null>(null);
