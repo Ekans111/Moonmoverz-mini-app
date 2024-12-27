@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useRef } from "react";
-import useDefectUser from "@/hook/UseDetectUser";
+import useDetectUser from "@/hook/UseDetectUser";
 
 function Home() {
-  const { user, id } = useDefectUser();
+  const { user, id } = useDetectUser();
   console.log("User: ", user, id);
   const [modalVisible, setModalVisible] = useState(false);
 
