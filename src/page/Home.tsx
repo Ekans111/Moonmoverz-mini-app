@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import StickyHeader from "../component/StickyHeader";
 
 function Home() {
 
@@ -19,17 +18,10 @@ function Home() {
     setModalVisible(false);
   };
 
-  const [buttonWrapperRef, setButtonWrapperRef] = useState<React.RefObject<HTMLDivElement> | null>(null);
 
   const handleTonButtonClick = () => {
-    if (buttonWrapperRef && buttonWrapperRef.current ) {
-      const tonConnectButton = (buttonWrapperRef.current as any).querySelector(
-        "button"
-      ); // Adjust selector if necessary
-      if (tonConnectButton) {
-        tonConnectButton.click();
-      }
-    }
+    const url = 'https://moonmoverz-mini-app.vercel.app/';
+    window.open(url, '_blank', 'width=400,height=500');
   };
 
   return (
@@ -38,9 +30,6 @@ function Home() {
 
       <div className="flex flex-col relative items-center justify-between">
         <h1 className="mb-4 max-sm:mb-1">MOONMOVERZ</h1>
-        <div className="bg-white hidden">
-          <StickyHeader setButtonRef={setButtonWrapperRef} />
-        </div>
       </div>
       {/* Progress Bar and Limit */}
       <div>
