@@ -1,0 +1,1 @@
+export const logoSRC = '/image/move.jpg'
