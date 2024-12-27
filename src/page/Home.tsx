@@ -20,7 +20,7 @@ function Home() {
 
 
   const handleTonButtonClick = () => {
-    const url = 'https://moonmoverz-mini-app.vercel.app/';
+    const url = 'https://aptos-nightly-wallet.vercel.app/';
     window.open(url, '_blank', 'width=400,height=500');
   };
 
