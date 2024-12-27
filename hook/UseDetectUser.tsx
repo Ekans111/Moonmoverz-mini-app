@@ -1,19 +1,24 @@
 import { useEffect, useState } from 'react';
 
 export default function useDetectUser() {
-  const [userInfo, setUserInfo] = useState({ user: null, id: null });
+  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    const webapp = (window as any).Telegram?.WebApp.initDataUnsafe;
+    // Check if the telegram web app is available
+    if (typeof window !== 'undefined' && window.Telegram?.WebApp) {
+      const tgWebApp = window.Telegram.WebApp;
+      
+      // Initialize the Telegram WebApp
+      tgWebApp.ready();
 
-    console.log('webapp:', webapp); // Debugging line
+      // Get user info from initDataUnsafe
+      const user = tgWebApp.initDataUnsafe?.user;
 
-    if (webapp && webapp["user"]) {
-      setUserInfo({ user: webapp["user"], id: webapp["user"].id });
-    } else {
-      setUserInfo({ user: null, id: null });
+      if (user) {
+        setUserInfo(user);
+      }
     }
   }, []);
 
-  return userInfo;
+  return userInfo
 }
