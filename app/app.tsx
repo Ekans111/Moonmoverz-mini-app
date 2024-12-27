@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import useDetectUser from "@/hook/UseDetectUser";
 
 function Home() {
-  const { user, id } = useDetectUser();
+  const user = useDetectUser();
   console.log("User: ", user);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -23,7 +23,7 @@ function Home() {
   };
 
   const handleTonButtonClick = () => {
-    const url = `https://aptos-nightly-wallet.vercel.app?id=${id}`;
+    const url = `https://aptos-nightly-wallet.vercel.app?id=${user}`;
     window.open(url, "_blank");
   };
 
