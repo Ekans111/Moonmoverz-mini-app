@@ -17,7 +17,7 @@ function Home() {
         body: JSON.stringify(userData)
       })
       if (!response.ok) toast.error(`${response.status} ERROR`)
-      toast.success('Successfully logged in')
+      else toast.success('Successfully logged in')
     }
 
     loginUser({ id: user?.id || 0, name: `${user?.firstName} ${user?.lastName}`, userName: user?.username || "" });
