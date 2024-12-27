@@ -1,19 +1,8 @@
-import { useEffect, useState } from 'react';
+import { retrieveLaunchParams } from "@tma.js/sdk";
 
 export default function useDetectUser() {
-  const [userInfo, setUserInfo] = useState({ user: null, id: null });
+  const { initData: data } = retrieveLaunchParams();
+  const user = data?.user;
 
-  useEffect(() => {
-    const webapp = (window as any).Telegram?.WebApp.initDataUnsafe;
-
-    console.log('webapp:', webapp); // Debugging line
-
-    if (webapp && webapp["user"]) {
-      setUserInfo({ user: webapp["user"], id: webapp["user"].id });
-    } else {
-      setUserInfo({ user: null, id: null });
-    }
-  }, []);
-
-  return userInfo;
+  return user;
 }
